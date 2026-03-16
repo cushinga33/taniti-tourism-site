@@ -44,7 +44,7 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 ${
+            className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 bg-gradient-to-b from-black/50 to-transparent ${
                 hasSolidBackground
                     ? 'bg-[#035ba3]/95 backdrop-blur-sm rounded-b-2xl'
                     : 'bg-transparent'
