@@ -37,7 +37,7 @@ export default function Hero() {
 			</div>
             <div className='absolute bottom-20 z-100'>
                 <button className='border-none bg-transparent cursor-pointer focus:outline-none' onClick={() => window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })} aria-label="Scroll down to content">
-                    <FaAngleDoubleDown className='animate-bounce text-4xl text-white' aria-hidden="true" />
+                    <FaAngleDoubleDown className='animate-bounce text-4xl text-white transition-transform duration-300 hover:scale-110' aria-hidden="true" />
                 </button>
             </div>
 		</section>

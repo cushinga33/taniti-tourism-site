@@ -44,10 +44,10 @@ export default function Navbar() {
 
     return (
         <nav
-            className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 bg-gradient-to-b from-black/50 to-transparent ${
+            className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 ${
                 hasSolidBackground
-                    ? 'bg-[#035ba3]/95 backdrop-blur-sm rounded-b-2xl'
-                    : 'bg-transparent'
+                    ? 'bg-[#00AAFF]/95 backdrop-blur-sm rounded-b-2xl'
+                    : 'bg-transparent bg-gradient-to-b from-black/50 to-transparent '
             }`}
         >
         <div className="max-w-6xl mx-auto flex items-center justify-between">
