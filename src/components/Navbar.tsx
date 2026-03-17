@@ -21,7 +21,7 @@ export default function Navbar() {
                 return;
             }
 
-            const heroTransitionPoint = Math.max(window.innerHeight - 260, 120);
+            const heroTransitionPoint = Math.max(window.innerHeight - 100, 120);
             setHasSolidBackground(window.scrollY >= heroTransitionPoint);
         };
 
@@ -40,13 +40,13 @@ export default function Navbar() {
     }, [pathname]);
 
     const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-        `hover:text-yellow-400 transition-colors ${isActive ? 'text-yellow-400 font-semibold' : ''}`;
+        `${hasSolidBackground ? 'hover:text-white' : 'hover:text-yellow-400'} transition-colors ${isActive? `${hasSolidBackground ? 'text-white font-semibold' : 'text-[#ffcf33] font-semibold'}` : `${hasSolidBackground ? 'text-[#11386c]' : 'text-white'}`}`;
 
     return (
         <nav
             className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 ${
                 hasSolidBackground
-                    ? 'bg-[#00AAFF]/95 backdrop-blur-sm rounded-b-2xl'
+                    ? 'bg-[#00AAFF]/25 backdrop-blur-2xl rounded-b-2xl'
                     : 'bg-transparent bg-gradient-to-b from-black/50 to-transparent '
             }`}
         >
