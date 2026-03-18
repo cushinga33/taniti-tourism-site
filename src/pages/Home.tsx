@@ -20,7 +20,7 @@ export default function Home() {
         {title: "Restaurants", desc: "Enjoy international American and Pan-Asian cuisine across 10 unique island eateries.", shape: 'tall', meta: 'View Options', image: restaurant, icon: <IoIosRestaurant />},
         {title: "Grocery Stores", desc: "From 24-hour convenience shops to full-service supermarkets.", shape: 'square', meta: 'See Stores', icon: <FaStore />},
         {title: "Transportation", desc: "Navigate with ease via public buses, taxis, or private car and bike rentals.", shape: 'wide', meta: 'Explore Transit', image: transportation, icon: <MdOutlineDirectionsTransit />},
-        {title: "Entertainment", desc: "Experience the vibrant nightlife and entertainment scene in Taniti, with live music, theaters, and more.", shape: 'wide', meta: 'See Events', image: entertainment, icon: <LuPartyPopper />},
+        {title: "Entertainment", desc: "Experience the vibrant nightlife and entertainment scene in Taniti, with live music, theaters, and more.", shape: 'wide', meta: 'Discover', image: entertainment, icon: <LuPartyPopper />},
         {title: "Lodging", desc: "Find the perfect place to stay in Taniti, from cozy inns to luxurious resorts.", shape: 'square', meta: 'View Lodging', icon: <LuHotel />},
         {title: "Sightseeing", desc: "Explore the top attractions and landmarks in Taniti, from historical sites to natural wonders.", shape: 'tall', meta: 'Explore Attractions', image: sightseeing, icon: <PiMountainsFill />},
     ]
@@ -69,7 +69,7 @@ export default function Home() {
                             </div>
                             {(shape == 'wide' || shape == 'tall') && 
                                 <div className='bg-[#00AAFF] rounded-xl'>
-                                    <img src={image} alt={title} className='object-cover w-full h-full rounded-xl' />
+                                    <img src={image} alt={title} loading="lazy" decoding="async" className='object-cover w-full h-full rounded-xl' />
                                 </div>
                             }
                             {shape == 'tall' && <p className='text-[#00AAFF] mt-2 text-center underline underline-offset-3 py-2'>{meta}</p>}

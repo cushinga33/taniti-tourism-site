@@ -4,11 +4,12 @@ import { FaAngleDoubleDown } from "react-icons/fa";
 
 export default function Hero() {
 	return (
-		<section className="fixed inset-0 flex min-h-screen min-w-full items-center justify-center overflow-hidden">
+		<section data-hero="heroMain" className="fixed inset-0 flex min-h-screen min-w-full items-center justify-center overflow-hidden">
 			<img
 				src={heroImage}
 				alt="Island View"
 				className="absolute inset-0 h-full w-full object-cover saturate-150 brightness-90"
+				decoding="async"
 			/>
 			<div
 				className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.3)_22%,rgba(0,0,0,0.08)_50%,rgba(0,0,0,0.28)_76%,rgba(0,0,0,0.62)_100%)]"

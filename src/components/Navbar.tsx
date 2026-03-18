@@ -8,6 +8,7 @@ const links = [
     { name: "Transit", path: "/transit" },
     { name: "Planning", path: "/planning" },
 ];
+const solidBackgroundRoutes = ["/", "/explore", "/lodging-dining"];
 
 export default function Navbar() {
     const { pathname } = useLocation();
@@ -16,12 +17,14 @@ export default function Navbar() {
 
     useEffect(() => {
         const updateNavbarState = () => {
-            if (pathname !== "/") {
+            if (!solidBackgroundRoutes.includes(pathname)) {
                 setHasSolidBackground(true);
                 return;
             }
 
-            const heroTransitionPoint = Math.max(window.innerHeight - 100, 120);
+            const heroEl = document.querySelector('[data-hero]') as HTMLElement | null;
+            const heroHeight = heroEl ? heroEl.getBoundingClientRect().height : window.innerHeight * 0.6;
+            const heroTransitionPoint = Math.max(heroHeight - 100, 120);
             setHasSolidBackground(window.scrollY >= heroTransitionPoint);
         };
 
@@ -46,7 +49,7 @@ export default function Navbar() {
         <nav
             className={`fixed top-0 z-[100] w-full px-6 py-4 text-white transition-all duration-300 ${
                 hasSolidBackground
-                    ? 'bg-[#00AAFF]/25 backdrop-blur-2xl rounded-b-2xl'
+                    ? 'bg-[#00AAFF] rounded-b-2xl'
                     : 'bg-transparent bg-gradient-to-b from-black/50 to-transparent '
             }`}
         >
