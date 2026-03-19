@@ -71,11 +71,15 @@ export default function LodgingDining() {
 
         updateNavbarState();
         window.addEventListener("scroll", updateNavbarState, { passive: true });
-        window.addEventListener("resize", updateNavbarState);
+
+        let resizeTimer: ReturnType<typeof setTimeout>;
+        const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateNavbarState, 150); };
+        window.addEventListener("resize", onResize);
 
         return () => {
             window.removeEventListener("scroll", updateNavbarState);
-            window.removeEventListener("resize", updateNavbarState);
+            window.removeEventListener("resize", onResize);
+            clearTimeout(resizeTimer);
         };
     }, [pathname]);
 
@@ -92,14 +96,14 @@ export default function LodgingDining() {
                 ]}
                 />
                 <div className="h-[60vh]" aria-hidden="true"/>
-                <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-all duration-300 flex flex-col gap-12 items-center justify-center`}>
+                <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300 flex flex-col gap-12 items-center justify-center`}>
                     <div className='flex w-full justify-center flex-col items-center text-center mt-6 max-w-4xl' id='lodging'>
                         <h1 className='font-body text-4xl font-bold text-[#11386c]'>Find Your Perfect Stay</h1>
                         <h1 className='font-body text-xl text-[#11386c] mt-4'>From luxurious four-star resorts to charming, family-owned bed and breakfasts, discover a place that feels like home on our tropical island.</h1>    
                     </div>
-                    <div className='grid grid-cols-1 md: grid-cols-2 grid-rows-2 gap-6 max-w-6xl mb-12'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mb-12'>
                         {lodgingOptions.map(({ title, desc, image }) => (
-                            <div className="grid grid-cols-2 grid-rows-1 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover: shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-[translate,box-shadow] duration-300 hover:-translate-y-1">
                                 <div key={title} className="flex items-center flex-col justify-center gap-4 ">
                                     <h2 className="font-body text-2xl font-bold text-[#11386c] mt-2">{title}</h2>
                                     <p className="font-body text-lg text-[#11386c] mt-2 text-center">{desc}</p>
@@ -115,9 +119,9 @@ export default function LodgingDining() {
                         <h1 className='font-body text-4xl font-bold text-[#11386c]'>A Taste of Taniti</h1>
                         <h1 className='font-body text-xl text-[#11386c] mt-4'>From fresh, locally-sourced seafood at family-owned eateries to world-class international cuisine, discover the flavors that make our island unique.</h1>    
                     </div>
-                    <div className='grid grid-cols-1 md: grid-cols-4 grid-rows-1 gap-6 max-w-6xl mb-12'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mb-12'>
                         {diningOptions.map(({ title, desc, image }) => (
-                            <div className="grid grid-cols-1 grid-rows-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover: shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="grid grid-cols-1 grid-rows-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-[translate,box-shadow] duration-300 hover:-translate-y-1">
                                 <div className="">
                                     <img src={image} alt={title} className="object-cover w-full h-full rounded-xl aspect-square" />
                                 </div>

@@ -62,7 +62,7 @@ export default function Hero(props: HeroProps) {
 				decoding="async"
 			/>
 			<div
-				className="absolute inset-0 h-full pointer-events-none bg-[linear-gradient(to_bottom,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.3)_22%,rgba(0,0,0,0.08)_50%,rgba(0,0,0,0.28)_76%,rgba(0,0,0,0.72)_100%)]  webkit-backdrop-blur-sm backdrop-blur-sm"
+				className="absolute inset-0 h-full pointer-events-none bg-[linear-gradient(to_bottom,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.3)_22%,rgba(0,0,0,0.08)_50%,rgba(0,0,0,0.28)_76%,rgba(0,0,0,0.72)_100%)]"
 				aria-hidden="true"
 			/>
 			<div className="absolute top-10 z-10 mx-auto flex w-full max-w-6xl flex-col items-center px-4 h-[60vh] justify-center text-center">
@@ -82,7 +82,7 @@ export default function Hero(props: HeroProps) {
 									key={i}
 									href={b.link}
 									onClick={(e) => handleButtonClick(e, b.link)}
-									className="mt-8 rounded-xl bg-[#00AAFF] px-8 py-3 text-lg font-semibold text-white tracking-wide transition-transform shadow-lg duration-300 hover:-translate-y-1 hover:brightness-105"
+									className="mt-8 rounded-xl bg-[#00AAFF] px-8 py-3 text-lg font-semibold hidden md:inline-block text-white tracking-wide transition-transform shadow-lg duration-300 hover:-translate-y-1 hover:brightness-105"
 								>
 									{b.title}
 								</a>

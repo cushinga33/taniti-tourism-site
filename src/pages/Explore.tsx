@@ -98,11 +98,15 @@ export default function Explore() {
 
         updateNavbarState();
         window.addEventListener("scroll", updateNavbarState, { passive: true });
-        window.addEventListener("resize", updateNavbarState);
+
+        let resizeTimer: ReturnType<typeof setTimeout>;
+        const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateNavbarState, 150); };
+        window.addEventListener("resize", onResize);
 
         return () => {
             window.removeEventListener("scroll", updateNavbarState);
-            window.removeEventListener("resize", updateNavbarState);
+            window.removeEventListener("resize", onResize);
+            clearTimeout(resizeTimer);
         };
     }, [pathname]);
 
@@ -120,14 +124,14 @@ export default function Explore() {
                 ]}
                 />
                 <div className="h-[60vh]" aria-hidden="true"/>
-                <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-all duration-300 flex flex-col gap-12 items-center justify-center`}>
+                <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300 flex flex-col gap-12 items-center justify-center`}>
                     <div className='flex w-full justify-center flex-col items-center text-center mt-6 max-w-4xl' id='sites'>
                         <h1 className='font-body text-4xl font-bold text-[#11386c]'>Natural Wonders</h1>
                         <h1 className='font-body text-xl text-[#11386c] mt-4'>From the historic architecture of Taniti City to the awe-inspiring glow of our active volcano, witness the landmarks that define the Pacific.</h1>    
                     </div>
-                    <div className='grid grid-cols-1 md: grid-cols-2 grid-rows-2 gap-6 max-w-6xl mb-12'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl mb-12'>
                         {sightseeingCards.map(({ title, desc, image }) => (
-                            <div className="grid grid-cols-2 grid-rows-1 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover: shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-[translate,box-shadow] duration-300 hover:-translate-y-1">
                                 <div key={title} className="flex items-center flex-col justify-center gap-4 ">
                                     <h2 className="font-body text-2xl font-bold text-[#11386c] mt-2">{title}</h2>
                                     <p className="font-body text-lg text-[#11386c] mt-2 text-center">{desc}</p>
@@ -143,9 +147,9 @@ export default function Explore() {
                         <h1 className='font-body text-4xl font-bold text-[#11386c]'>Adventure Awaits</h1>
                         <h1 className='font-body text-xl text-[#11386c] mt-4'>From the depths of our crystal-clear lagoons to the heights of the rainforest canopy, find your next adrenaline rush in Taniti's natural playground.</h1>    
                     </div>
-                    <div className='grid grid-cols-1 md: grid-cols-4 grid-rows-1 gap-6 max-w-6xl mb-12'>
+                    <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 max-w-6xl mb-12'>
                         {islandActivities.map(({ title, desc, image }) => (
-                            <div className="grid grid-cols-1 grid-rows-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover: shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="grid grid-cols-1 grid-rows-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-[translate,box-shadow] duration-300 hover:-translate-y-1">
                                 <div className="">
                                     <img src={image} alt={title} className="object-cover w-full h-full rounded-xl" />
                                 </div>
@@ -158,12 +162,12 @@ export default function Explore() {
                         ))} 
                     </div>
                     <div className='flex w-full justify-center flex-col items-center text-center mt-6 max-w-4xl' id='entertainment'>
-                        <h1 className='font-body text-4xl font-bold text-[#11386c]'>Beyond the Horizon</h1>
-                        <h1 className='font-body text-xl text-[#11386c] mt-4'>From the historic architecture of Taniti City to the awe-inspiring glow of our active volcano, witness the landmarks that define the Pacific.</h1>    
+                        <h1 className='font-body text-4xl font-bold text-[#11386c]'>Island Life</h1>
+                        <h1 className='font-body text-xl text-[#11386c] mt-4'>Immerse yourself in the local soul of the island. Explore vibrant arts, rich history, and the modern energy of Merriton Landing's nightlife.</h1>    
                     </div>
-                    <div className='grid grid-cols-1 md: grid-cols-2 grid-rows-2 gap-6 max-w-6xl'>
+                    <div className='grid grid-cols-1 md:grid-cols-2 gap-6 max-w-6xl'>
                         {islandEntertainment.map(({ title, desc, image }) => (
-                            <div className="grid grid-cols-2 grid-rows-1 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover: shadow-xl transition-all duration-300 hover:-translate-y-1">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-gray-100/85 rounded-2xl p-4 shadow-lg hover:shadow-xl transition-[translate,box-shadow] duration-300 hover:-translate-y-1">
                                 <div key={title} className="flex items-center flex-col justify-center gap-4 ">
                                     <h2 className="font-body text-2xl font-bold text-[#11386c] mt-2">{title}</h2>
                                     <p className="font-body text-lg text-[#11386c] mt-2 text-center">{desc}</p>
