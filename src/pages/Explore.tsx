@@ -1,8 +1,6 @@
-import React from 'react';
 import heroImage from '../assets/exploreHero.jpg';
 import Hero from '../components/heroSmall';
-import { useLocation, Link } from "react-router-dom";
-import { useEffect, useState } from 'react';
+
 import tanitiCity from '../assets/tanitiCity.jpg';
 import yellowLeafBay from '../assets/whiteSand.jpg';
 import volcano from '../assets/volcano.jpg';
@@ -85,31 +83,6 @@ export default function Explore() {
         image: familyFun
     }
     ];
-    const { pathname } = useLocation();
-    const [hasCorners, setHasCorners] = useState(true);
-
-    useEffect(() => {
-        const updateNavbarState = () => {
-            const heroEl = document.querySelector('[data-hero]') as HTMLElement | null;
-            const heroHeight = heroEl ? heroEl.getBoundingClientRect().height : window.innerHeight * 0.6;
-            const heroTransitionPoint = Math.max(heroHeight - 100, 120);
-            setHasCorners(window.scrollY < heroTransitionPoint);
-        };
-
-        updateNavbarState();
-        window.addEventListener("scroll", updateNavbarState, { passive: true });
-
-        let resizeTimer: ReturnType<typeof setTimeout>;
-        const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateNavbarState, 150); };
-        window.addEventListener("resize", onResize);
-
-        return () => {
-            window.removeEventListener("scroll", updateNavbarState);
-            window.removeEventListener("resize", onResize);
-            clearTimeout(resizeTimer);
-        };
-    }, [pathname]);
-
     return ( 
         <div className="relative">
                 <Hero
@@ -124,7 +97,7 @@ export default function Explore() {
                 ]}
                 />
                 <div className="h-[60vh]" aria-hidden="true"/>
-                <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300 flex flex-col gap-12 items-center justify-center`}>
+                <section className={`relative z-20 -mt-16 rounded-t-[2.5rem] bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300 flex flex-col gap-12 items-center justify-center`}>
                     <div className='flex w-full justify-center flex-col items-center text-center mt-6 max-w-4xl' id='sites'>
                         <h1 className='font-body text-4xl font-bold text-[#11386c]'>Natural Wonders</h1>
                         <h1 className='font-body text-xl text-[#11386c] mt-4'>From the historic architecture of Taniti City to the awe-inspiring glow of our active volcano, witness the landmarks that define the Pacific.</h1>    

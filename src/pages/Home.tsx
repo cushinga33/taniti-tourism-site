@@ -3,9 +3,8 @@ import restaurant from '../assets/restaurantsHome.jpg';
 import sightseeing from '../assets/sightseeingHome.jpg';
 import entertainment from '../assets/entertainmentHome.jpg';
 import transportation from '../assets/transportationHome.jpg';
-import { useLocation, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { HashLink } from 'react-router-hash-link';
-import { useEffect, useState } from 'react';
 import { ImPowerCord } from "react-icons/im";
 import { BiSolidDrink } from "react-icons/bi";
 import { FaDollarSign, FaStore  } from "react-icons/fa";
@@ -15,8 +14,6 @@ import { LuPartyPopper, LuHotel } from "react-icons/lu";
 import { PiMountainsFill } from "react-icons/pi";
 
 export default function Home() {
-    const { pathname } = useLocation();
-
     const exploreCards = [
         {title: "Restaurants", desc: "Enjoy international American and Pan-Asian cuisine across 10 unique island eateries.", shape: 'tall', meta: 'View Options', image: restaurant, icon: <IoIosRestaurant />, link: '/lodging-dining#dining'},
         {title: "Grocery Stores", desc: "From 24-hour convenience shops to full-service supermarkets.", shape: 'square', meta: 'See Stores', icon: <FaStore />, link: '/lodging-dining#dining'},
@@ -30,34 +27,12 @@ export default function Home() {
         {title: 'Alcohol is not allowed to be served or sold between the hours of midnight and 9:00 a.m.', icon: <BiSolidDrink />},
         {title: 'Taniti uses the U.S. dollar as its currency, but many businesses accept euros and yen', icon: <FaDollarSign />},
     ]
-    const [hasCorners, setHasCorners] = useState(true);
-
-    useEffect(() => {
-        const updateNavbarState = () => {
-            const heroTransitionPoint = Math.max(window.innerHeight - 100, 120);
-            setHasCorners(window.scrollY < heroTransitionPoint);
-        };
-
-        updateNavbarState();
-        window.addEventListener("scroll", updateNavbarState, { passive: true });
-
-        let resizeTimer: ReturnType<typeof setTimeout>;
-        const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateNavbarState, 150); };
-        window.addEventListener("resize", onResize);
-
-        return () => {
-            window.removeEventListener("scroll", updateNavbarState);
-            window.removeEventListener("resize", onResize);
-            clearTimeout(resizeTimer);
-        };
-    }, [pathname]);
-
     return (
         <div className="relative">
             <Hero />
             <div className="min-h-screen" aria-hidden="true" />
 
-            <section className={`relative z-20 -mt-16 ${hasCorners ? 'rounded-t-[2.5rem]' : ''} bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300`}>
+            <section className={`relative z-20 -mt-16 rounded-t-[2.5rem] bg-gradient-to-tl from-[#bce8ff] to-[#00AAFF] px-6 pb-24 pt-12 shadow-[0_-24px_80px_rgba(15,23,42,0.28)] min-h-screen transition-[border-radius] duration-300`}>
                 <div className='flex w-full justify-center flex-col items-center text-center my-12'>
                     <h1 className='font-body text-4xl font-bold text-[#11386c]'>Discover the Island</h1>
                     <h1 className='font-body text-xl text-[#11386c] mt-4'>From the volcanic peaks to the bustling streets of Taniti City, find everything you need to plan your stay.</h1>    

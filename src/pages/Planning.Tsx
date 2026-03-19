@@ -1,5 +1,4 @@
-import { useLocation } from "react-router-dom";
-import { useEffect, useState } from 'react';
+
 import { FaMoneyBill } from "react-icons/fa";
 import { MdOutlinePower } from "react-icons/md";
 import { LiaLanguageSolid } from "react-icons/lia";
@@ -53,30 +52,6 @@ export default function Planning() {
         { date: 'Aug 15', name: 'Independence Day', status: 'Full Closure' },
         { date: 'Dec 25', name: 'Winter Holiday', status: 'Full Closure' }
     ];
-    const { pathname } = useLocation();
-    const [hasCorners, setHasCorners] = useState(true);
-
-    useEffect(() => {
-        const updateNavbarState = () => {
-            const heroEl = document.querySelector('[data-hero]') as HTMLElement | null;
-            const heroHeight = heroEl ? heroEl.getBoundingClientRect().height : window.innerHeight * 0.6;
-            const heroTransitionPoint = Math.max(heroHeight - 100, 120);
-            setHasCorners(window.scrollY < heroTransitionPoint);
-        };
-
-        updateNavbarState();
-        window.addEventListener("scroll", updateNavbarState, { passive: true });
-
-        let resizeTimer: ReturnType<typeof setTimeout>;
-        const onResize = () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(updateNavbarState, 150); };
-        window.addEventListener("resize", onResize);
-
-        return () => {
-            window.removeEventListener("scroll", updateNavbarState);
-            window.removeEventListener("resize", onResize);
-            clearTimeout(resizeTimer);
-        };
-    }, [pathname]);
     return (
         <div className="relative">
             <Hero
@@ -91,7 +66,7 @@ export default function Planning() {
                 ]}
             />
             <div className="h-[60vh]" aria-hidden="true"/>
-            <section className={`flex flex-col -mt-16 items-center w-full pt-20 min-h-screen mx-auto relative bg-gray-50 ${hasCorners ? 'rounded-t-[2.5rem]' : ''}`}>
+            <section className={`flex flex-col -mt-16 items-center w-full pt-20 min-h-screen mx-auto relative bg-gray-50 rounded-t-[2.5rem]`}>
                 <div className="flex w-full items-center flex-col justify-center max-w-6xl mx-auto mb-6">
                     <div className='flex w-full justify-center flex-col text-center items-center my-6 max-w-4xl' id='essentials'>
                         <h1 className='font-body text-4xl text-center font-bold text-[#11386c]'>Island Essentials</h1>
