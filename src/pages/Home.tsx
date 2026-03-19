@@ -98,7 +98,7 @@ export default function Home() {
                         Explore the Island
                     </Link>
                 </div>
-                <div className='flex w-full justify-center flex-col items-start max-w-4xl mx-auto my-12'>
+                <div className='flex w-full justify-center flex-col items-center max-w-4xl mx-auto my-12'>
                     <h1 className='font-body text-4xl font-bold text-[#11386c]'>Island Information</h1>
                     <h1 className='font-body text-xl text-[#11386c] mt-4'>Essential details to help you plan your stay.</h1>    
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-12">
